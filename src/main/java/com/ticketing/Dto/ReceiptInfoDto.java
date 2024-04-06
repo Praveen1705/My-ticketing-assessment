@@ -10,6 +10,7 @@ public class ReceiptInfoDto {
     private String to;
     private String ticketFare;
     private PassengerDto passengerInfo;
-    private SeatDto seatDetails;
+    private String seatSection;
+    private Integer seatNumber;
 
 }

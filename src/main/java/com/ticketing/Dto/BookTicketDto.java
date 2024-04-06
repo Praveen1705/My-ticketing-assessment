@@ -9,7 +9,8 @@ public class BookTicketDto {
     private String from;
     private String to;
     private String ticketFare;
-    private SeatDto seatDetails;
+    private String seatSection;
+    private Integer seatNumber;
 
 
 }

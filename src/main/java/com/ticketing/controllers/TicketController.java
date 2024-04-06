@@ -2,6 +2,8 @@ package com.ticketing.controllers;
 
 import com.ticketing.Dto.BookTicketDto;
 import com.ticketing.Dto.PassengerDto;
+import com.ticketing.Dto.ReceiptInfoDto;
+import com.ticketing.Dto.UpdateSeatRequest;
 import com.ticketing.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class TicketController {
     }
 
     // endpoint for Buying ticket
-    @PostMapping("/")
+    @PostMapping("/ticket")
     public ResponseEntity<String> buyTicket (@RequestBody BookTicketDto ticketDto){
 
        ticketService.buyTicket(ticketDto);
@@ -31,7 +33,7 @@ public class TicketController {
 
    // endpoint to view ticket details
     @GetMapping("/ticket/{id}")
-    public PassengerDto getTicketInfo (@PathVariable Long id){
+    public ReceiptInfoDto getTicketInfo (@PathVariable Long id){
 
         return ticketService.getTicketInfo(id);
 
@@ -43,5 +45,12 @@ public class TicketController {
     {
          ticketService.cancelTicket(id);
     }
+
+    @PutMapping("/ticket/{id}/seat")
+    public void changeSeat(@PathVariable Long id, @RequestBody UpdateSeatRequest seatChange) throws Exception {
+                ticketService.changeSeat(id,seatChange);
+    }
+
+
 }
 

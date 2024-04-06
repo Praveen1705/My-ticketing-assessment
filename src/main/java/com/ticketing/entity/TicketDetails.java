@@ -1,20 +1,22 @@
 package com.ticketing.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class TicketDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String From;
     private String to;
-    private PassengerDetails passengerDetails;
+    private Long passengerId;
     private Double fare;
-    @ManyToOne
+    private String seatSection;
+    private Integer seatNumber;
+    @OneToOne
+    @JoinColumn(name ="passenger_id", referencedColumnName = "id")
     private PassengerDetails passDetails;
 }

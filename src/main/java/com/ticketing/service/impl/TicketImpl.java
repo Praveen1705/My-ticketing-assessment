@@ -2,6 +2,8 @@ package com.ticketing.service.impl;
 
 import com.ticketing.Dto.BookTicketDto;
 import com.ticketing.Dto.PassengerDto;
+import com.ticketing.Dto.ReceiptInfoDto;
+import com.ticketing.Dto.UpdateSeatRequest;
 import com.ticketing.entity.PassengerDetails;
 import com.ticketing.entity.TicketDetails;
 import com.ticketing.repository.PassengerRepo;
@@ -11,19 +13,27 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class TicketImpl implements TicketService {
 
- @Autowired
- private PassengerRepo passengerRepo;
+     @Autowired
+    private TicketRepo ticketRepo;
 
     @Autowired
-    private TicketRepo ticketRepo;
+    private PassengerRepo passengerRepo;
 
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
+    public void userRegister(PassengerDto passengerDto) {
+
+        PassengerDetails passengerDetails = modelMapper.map(passengerDto,PassengerDetails.class );
+        passengerRepo.save(passengerDetails);
+    }
     @Override
     public void buyTicket(BookTicketDto ticInfo) {
 
@@ -32,8 +42,10 @@ public class TicketImpl implements TicketService {
     }
 
     @Override
-    public PassengerDto getTicketInfo(Long ticketDto) {
+    public ReceiptInfoDto getTicketInfo(Long ticketId) {
+        Optional<TicketDetails> ticketInfo = ticketRepo.findById(ticketId);
         return null;
+
     }
 
     @Override
@@ -42,8 +54,10 @@ public class TicketImpl implements TicketService {
     }
 
     @Override
-    public void userRegister(PassengerDto passengerDto) {
-
+    public void changeSeat(Long id, UpdateSeatRequest seatChange) throws Exception {
+        Optional<TicketDetails> ticketInfo = ticketRepo.findById(id);
 
     }
+
+
 }

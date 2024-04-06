@@ -3,8 +3,8 @@ package com.ticketing.Dto;
 import lombok.Data;
 
 @Data
-public class SeatDto {
+public class UpdateSeatRequest {
 
     private String section;
-    private long seatNumber;
+    private Integer seatNumber;
 }
