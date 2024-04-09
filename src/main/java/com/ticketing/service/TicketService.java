@@ -1,9 +1,9 @@
 package com.ticketing.service;
 
-import com.ticketing.Dto.BookTicketDto;
-import com.ticketing.Dto.PassengerDto;
-import com.ticketing.Dto.ReceiptInfoDto;
-import com.ticketing.Dto.UpdateSeatRequest;
+import com.ticketing.dto.BookTicketDto;
+import com.ticketing.dto.PassengerDto;
+import com.ticketing.dto.ReceiptInfoDto;
+import com.ticketing.dto.UpdateSeatRequest;
 
 
 public interface TicketService {
@@ -12,7 +12,7 @@ public interface TicketService {
 
     ReceiptInfoDto getTicketInfo(Long ticketId);
 
-    void cancelTicket(Long id);
+    void cancelTicket(Long id) throws Exception;
 
     void changeSeat(Long id, UpdateSeatRequest seatChange) throws Exception;
 

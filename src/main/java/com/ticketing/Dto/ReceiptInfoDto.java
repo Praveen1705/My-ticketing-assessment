@@ -1,8 +1,12 @@
-package com.ticketing.Dto;
+package com.ticketing.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReceiptInfoDto {
 
     private Long passengerId;
@@ -12,5 +16,10 @@ public class ReceiptInfoDto {
     private PassengerDto passengerInfo;
     private String seatSection;
     private Integer seatNumber;
+    private String errorMessage;
+
+    public ReceiptInfoDto(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
 }
